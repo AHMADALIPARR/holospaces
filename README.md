@@ -249,17 +249,37 @@ Executable realises only the Boolean conjunction; source_trace is documentation-
 | docs/original_pasted_content.txt | ~66 KB | Archival operator text |
 | docs/assets/IMAGE_MANIFEST.md | — | Asset provenance |
 
-## 11. IMAGE ASSETS ON REMOTE
+## 11. VISUAL ASSETS
 
-Present:
-- docs/assets/quantum/02-trapped-ion-system.jpg
-- docs/assets/quantum/05-quantum-annealer.jpg
-- docs/assets/quantum/07-su2-bloch-sphere.png
-- docs/assets/quantum/08-topological-braid.png
-- docs/assets/quantum/09-grover-amplitudes.png
+Only the five assets that resolve on the remote are embedded. All other numbered paths are absent and are not referenced.
 
-Absent on remote (referenced in older drafts only):
-01, 03, 04, 06, 10–20 and all architecture/branding paths
+### Mathematical Visualizations
+
+**SU(2) Bloch Sphere**
+
+<img src="docs/assets/quantum/07-su2-bloch-sphere.png" width="380" alt="SU(2) Bloch sphere">
+
+**Topological Braid**
+
+<img src="docs/assets/quantum/08-topological-braid.png" width="520" alt="Topological braid">
+
+**Grover Amplitude Evolution**
+
+<img src="docs/assets/quantum/09-grover-amplitudes.png" width="520" alt="Grover amplitudes">
+
+### Laboratory Hardware Context
+
+Authentic photographs. Context only; no repository code has executed on these systems.
+
+**Trapped-Ion Apparatus (NIST)**
+
+<img src="docs/assets/quantum/02-trapped-ion-system.jpg" width="480" alt="NIST trapped-ion system">
+
+**Quantum Annealer (D-Wave)**
+
+<img src="docs/assets/quantum/05-quantum-annealer.jpg" width="480" alt="D-Wave quantum annealer">
+
+Provenance: see `docs/assets/IMAGE_MANIFEST.md`.
 
 ## 12. EXTERNAL DEPENDENCIES NOT IN TREE
 
