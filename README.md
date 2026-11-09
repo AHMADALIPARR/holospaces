@@ -39,28 +39,6 @@ The repository contains four principal language and runtime boundaries:
 
 OpenQASM circuits are stored under `openqasm/examples/circuits/`. The compiler demo in `algorithms/openqasm_compiler.rs` and the Holospaces benchmark in `algorithms/holospaces_benchmark.rs` reference external crates (`tqc_*`) that are not present in this tree; the files therefore serve as structural demonstrations rather than self-contained executables.
 
-```mermaid
-graph TD
-    subgraph SKL["SnapKitty Kernel Language"]
-        Lexer[skl_lexer.f90] --> Parser[skl_parser.f90]
-        Parser --> AST[module_ast_t]
-        AST --> Runtime[functor_runtime.f90]
-    end
-    subgraph Qubit["Qubit Certificate Chain"]
-        Certs[SU(2)/PU(22)/PU(576) certificates]
-        Dict[dict_row_record]
-        Collapse[cache_collapse]
-    end
-    subgraph OpenQASM["OpenQASM Representations"]
-        Circuits[examples/circuits/*.qasm]
-        ParserR[rust_parser]
-        SimC[c_simulator]
-    end
-    SKL --> Runtime
-    Qubit --> Certs
-    OpenQASM --> Circuits
-```
-
 ## Qubit Certificate Chains
 
 Certificate construction follows the predicate defined in `docs/qubit_algorithm_and_fortran_stack.md` and the Gherkin features under `specifications/`. The production implementation `production/qubit_cert/` supplies pure functions for the density checks. No claim is made that the certificates have been machine-checked beyond the skeletons and feature files present in the tree.
