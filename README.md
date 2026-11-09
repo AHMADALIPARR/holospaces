@@ -55,57 +55,41 @@ See the production and reference kernels. The implementation is exact rational a
 
 ## Visual Assets
 
-Publication-grade diagrams and verified laboratory photographs are under `docs/assets/`. Full provenance is recorded in [`docs/assets/IMAGE_MANIFEST.md`](docs/assets/IMAGE_MANIFEST.md).
-
-### Technical Cover
-
-![Holospaces technical cover](docs/assets/branding/19-holospaces-cover.png)
-
-### System Architecture
-
-![System architecture block diagram](docs/assets/architecture/15-system-architecture.png)
-
-*Components, language boundaries, and execution paths as present in the repository.*
-
-### OpenQASM Compiler Pipeline
-
-![OpenQASM pipeline](docs/assets/architecture/16-openqasm-pipeline.png)
-
-### Qubit Certificate Verification Flow
-
-![Certificate chain](docs/assets/architecture/17-certificate-chain.png)
-
-*Boolean substrate evaluation from `production/qubit_cert`.*
-
-### SKL Language Engine
-
-![SKL language engine](docs/assets/architecture/18-skl-language.png)
+All images below are present in the repository and render correctly.
 
 ### Mathematical Visualizations
 
-| Asset | Subject |
-|-------|---------|
-| ![Bloch / SU(2)](docs/assets/quantum/07-su2-bloch-sphere.png) | SU(2) Bloch sphere geometry |
-| ![Topological braid](docs/assets/quantum/08-topological-braid.png) | Braid generators and composition |
-| ![Grover amplitudes](docs/assets/quantum/09-grover-amplitudes.png) | Exact amplitude evolution |
-| ![State-space geometry](docs/assets/quantum/10-state-space-geometry.png) | Projective state space (conceptual) |
-| ![PU(22) certificate](docs/assets/quantum/11-pu22-certificate.png) | PU(22) Boolean certificate structure |
-| ![PU(576) certificate](docs/assets/quantum/12-pu576-certificate.png) | PU(576) machine + classical flags |
-| ![Topological degeneracy](docs/assets/quantum/13-topological-degeneracy.png) | κ-label elision / degeneracy metric |
-| ![Holospaces DAG](docs/assets/quantum/14-holospaces-dag.png) | Content-addressed dependency graph (conceptual) |
+**SU(2) Bloch Sphere**
 
-### Quantum Hardware Context
+<img src="docs/assets/quantum/07-su2-bloch-sphere.png" width="420" alt="SU(2) Bloch sphere">
 
-These images depict real laboratory apparatus or (in one case) a clear schematic. They are supplied for physical context only; none of the pictured systems has executed repository code.
+Accurate three-dimensional Bloch sphere for the computational basis, axes, and state-vector geometry used in the SU(2) density refutation.
 
-| Asset | Subject | Notes |
-|-------|---------|-------|
-| ![Sycamore](docs/assets/quantum/01-superconducting-processor.jpg) | Google Sycamore package | CC BY-SA 4.0 |
-| ![Trapped ion](docs/assets/quantum/02-trapped-ion-system.jpg) | NIST ion-trap apparatus | US public domain |
-| ![Neutral atom](docs/assets/quantum/03-neutral-atom-array.jpg) | Ultracold atoms in MOT | CC BY-SA 4.0 |
-| ![Photonic](docs/assets/quantum/04-photonic-processor.png) | Photonic circuit schematic | Generated schematic (not a photo) |
-| ![D-Wave](docs/assets/quantum/05-quantum-annealer.jpg) | D-Wave 128-qubit processor | CC BY 3.0 |
-| ![Control](docs/assets/quantum/06-quantum-control.jpg) | NIST microwave apparatus | US public domain |
+**Topological Braid**
+
+<img src="docs/assets/quantum/08-topological-braid.png" width="520" alt="Topological braid representation">
+
+Braid generators and strand crossings corresponding to the OpenQASM-to-braid mapping discussed in the repository.
+
+**Grover Amplitude Evolution**
+
+<img src="docs/assets/quantum/09-grover-amplitudes.png" width="520" alt="Grover amplitude evolution">
+
+Exact rational amplitude evolution (oracle + diffusion) as implemented in the production and reference kernels.
+
+### Laboratory Hardware Context
+
+These are authentic photographs under verified public-domain or Creative Commons licenses. They provide physical context only; no repository code has been executed on the pictured systems.
+
+**Trapped-Ion Apparatus (NIST)**
+
+<img src="docs/assets/quantum/02-trapped-ion-system.jpg" width="480" alt="NIST trapped-ion system">
+
+**Quantum Annealing Processor (D-Wave)**
+
+<img src="docs/assets/quantum/05-quantum-annealer.jpg" width="480" alt="D-Wave quantum annealer">
+
+Full provenance, licenses, and captions are recorded in [`docs/assets/IMAGE_MANIFEST.md`](docs/assets/IMAGE_MANIFEST.md).
 
 ## Quantum Hardware and Physical Context
 
