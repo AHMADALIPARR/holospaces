@@ -248,10 +248,3 @@ The SKL type system currently recognizes only the single type constructor `VECTO
 
 These boundaries are explicit in the source. The documentation records them so that later extensions can be distinguished from the present implementation.
 
-## Files Changed
-
-- README.md (this document, expanded from the original short form)
-- docs/assets/quantum/02-trapped-ion-system.jpg (public-domain NIST photograph of ion-trap apparatus)
-
-No source files under algorithms/, production/, just-gherkin-fortran/, or openqasm/ were modified.
-
