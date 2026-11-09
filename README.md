@@ -55,41 +55,89 @@ See the production and reference kernels. The implementation is exact rational a
 
 ## Visual Assets
 
-All images below are present in the repository and render correctly.
+All diagrams and photographs are stored under `docs/assets/`. Provenance and licenses are in [`docs/assets/IMAGE_MANIFEST.md`](docs/assets/IMAGE_MANIFEST.md).
+
+### Technical Cover
+
+<img src="docs/assets/branding/19-holospaces-cover.png" width="360" alt="Holospaces technical cover">
+
+### System Architecture
+
+<img src="docs/assets/architecture/15-system-architecture.png" width="640" alt="System architecture">
+
+### OpenQASM Compiler Pipeline
+
+<img src="docs/assets/architecture/16-openqasm-pipeline.png" width="640" alt="OpenQASM pipeline">
+
+### Certificate Verification Flow
+
+<img src="docs/assets/architecture/17-certificate-chain.png" width="640" alt="Certificate chain">
+
+### SKL Language Engine
+
+<img src="docs/assets/architecture/18-skl-language.png" width="640" alt="SKL language engine">
 
 ### Mathematical Visualizations
 
 **SU(2) Bloch Sphere**
 
-<img src="docs/assets/quantum/07-su2-bloch-sphere.png" width="420" alt="SU(2) Bloch sphere">
-
-Accurate three-dimensional Bloch sphere for the computational basis, axes, and state-vector geometry used in the SU(2) density refutation.
+<img src="docs/assets/quantum/07-su2-bloch-sphere.png" width="380" alt="SU(2) Bloch sphere">
 
 **Topological Braid**
 
-<img src="docs/assets/quantum/08-topological-braid.png" width="520" alt="Topological braid representation">
-
-Braid generators and strand crossings corresponding to the OpenQASM-to-braid mapping discussed in the repository.
+<img src="docs/assets/quantum/08-topological-braid.png" width="560" alt="Topological braid">
 
 **Grover Amplitude Evolution**
 
-<img src="docs/assets/quantum/09-grover-amplitudes.png" width="520" alt="Grover amplitude evolution">
+<img src="docs/assets/quantum/09-grover-amplitudes.png" width="560" alt="Grover amplitudes">
 
-Exact rational amplitude evolution (oracle + diffusion) as implemented in the production and reference kernels.
+**State-Space Geometry**
 
-### Laboratory Hardware Context
+<img src="docs/assets/quantum/10-state-space-geometry.png" width="560" alt="State-space geometry">
 
-These are authentic photographs under verified public-domain or Creative Commons licenses. They provide physical context only; no repository code has been executed on the pictured systems.
+**PU(22) Certificate Structure**
+
+<img src="docs/assets/quantum/11-pu22-certificate.png" width="520" alt="PU(22) certificate">
+
+**PU(576) Certificate Structure**
+
+<img src="docs/assets/quantum/12-pu576-certificate.png" width="560" alt="PU(576) certificate">
+
+**Topological Degeneracy / κ-elision**
+
+<img src="docs/assets/quantum/13-topological-degeneracy.png" width="520" alt="Topological degeneracy">
+
+**Content-Addressed Holospaces DAG**
+
+<img src="docs/assets/quantum/14-holospaces-dag.png" width="560" alt="Holospaces DAG">
+
+### Quantum Hardware Context (photographs)
+
+These are authentic laboratory photographs (or one clearly labeled schematic). They supply physical context only; none of the pictured systems has executed repository code.
+
+**Superconducting Processor (Sycamore package)**
+
+<img src="docs/assets/quantum/01-superconducting-processor.jpg" width="480" alt="Sycamore processor">
 
 **Trapped-Ion Apparatus (NIST)**
 
-<img src="docs/assets/quantum/02-trapped-ion-system.jpg" width="480" alt="NIST trapped-ion system">
+<img src="docs/assets/quantum/02-trapped-ion-system.jpg" width="480" alt="NIST trapped-ion">
 
-**Quantum Annealing Processor (D-Wave)**
+**Neutral-Atom / Ultracold Atoms (MOT)**
 
-<img src="docs/assets/quantum/05-quantum-annealer.jpg" width="480" alt="D-Wave quantum annealer">
+<img src="docs/assets/quantum/03-neutral-atom-array.jpg" width="480" alt="Neutral-atom MOT">
 
-Full provenance, licenses, and captions are recorded in [`docs/assets/IMAGE_MANIFEST.md`](docs/assets/IMAGE_MANIFEST.md).
+**Photonic Processor (schematic)**
+
+<img src="docs/assets/quantum/04-photonic-processor.png" width="560" alt="Photonic schematic">
+
+**Quantum Annealer (D-Wave)**
+
+<img src="docs/assets/quantum/05-quantum-annealer.jpg" width="480" alt="D-Wave annealer">
+
+**Control Instrumentation (NIST microwave)**
+
+<img src="docs/assets/quantum/06-quantum-control.jpg" width="480" alt="NIST control apparatus">
 
 ## Quantum Hardware and Physical Context
 
