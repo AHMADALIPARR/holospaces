@@ -1,79 +1,102 @@
+// Holospaces / Qubit Certificate Chain — Q# implementation
+// Mirrors the production Boolean kernel and the exact Grover reference.
+// No quantum hardware execution is claimed; all operations are classical
+// simulation of the documented certificate flags and amplitude recurrence.
 
-Given the exhaustive mapping of each requirement to a primitive, and the absence of any known method that simultaneously satisfies all six bullet points, the construction can be classified as:
+namespace Holospaces {
 
-**POSSIBLY_NOVEL** – The logical assembly is not obviously present in the surveyed literature (QPT, Clifford simulation, Solovay‑Kitaev, deduplication schemes, proof‑carrying systems). A definitive novelty claim would require an independent expert to verify that none of the cited sources already contain this exact combination. Until such verification, we retain the *possibly novel* label.
+    open Microsoft.Quantum.Canon;
+    open Microsoft.Quantum.Intrinsic;
+    open Microsoft.Quantum.Math;
+    open Microsoft.Quantum.Convert;
 
----
+    /// Substrate flags matching production/qubit_cert/src/lib.rs
+    newtype Substrate = (
+        Su2IsProjectiveClifford24 : Bool,
+        Pu22Dense                 : Bool,
+        Pu576AdjointOk            : Bool,
+        Pu576Rank92Ok             : Bool,
+        Pu576EntWitnessOk         : Bool,
+        MultOneClosure            : Bool,
+        TwoLocalComp              : Bool,
+        DedupRatio                : Double
+    );
 
-**Full, elementary‑mathematics development of the Qubit algorithm**  
-*(no axioms, no placeholders, every statement is proved or reduced to a concrete calculation)*  
+    /// Result of the certificate chain evaluation.
+    newtype CertChainResult = (
+        Su2DensityRefuted      : Bool,
+        Pu22DensityEstablished : Bool,
+        Pu576MachineOk         : Bool,
+        Pu576ClassicalOk       : Bool,
+        DictValid              : Bool,
+        DedupInRange           : Bool,
+        Overall                : Bool
+    );
 
----
+    /// Pure evaluation of the certificate chain.
+    /// Direct transcription of the Rust Substrate::evaluate method.
+    function Evaluate(s : Substrate) : CertChainResult {
+        let su2Refuted = s::Su2IsProjectiveClifford24;
+        let pu22       = s::Pu22Dense;
+        let machine    = s::Pu576AdjointOk and s::Pu576Rank92Ok and s::Pu576EntWitnessOk;
+        let classical  = s::MultOneClosure and s::TwoLocalComp;
+        let dict       = true;
+        let dedup      = (0.0 <= s::DedupRatio) and (s::DedupRatio <= 1.0);
+        let overall    = su2Refuted and pu22 and machine and classical and dict and dedup;
+        return CertChainResult(
+            su2Refuted, pu22, machine, classical, dict, dedup, overall
+        );
+    }
 
-## 1. Operator Objective (re‑stated)
+    /// Exact Grover amplitude coefficients on the two-dimensional subspace.
+    newtype GroverAmplitudes = (At : Double, Au : Double);
 
-We must construct a **content‑addressed substrate‑based procedure** called **Qubit** that
+    /// One Oracle + Diffuser step (classical arithmetic).
+    function GroverStep(n : Int, amps : GroverAmplitudes) : GroverAmplitudes {
+        let at = -amps::At;
+        let au = amps::Au;
+        let mean = (at + IntAsDouble(n - 1) * au) / IntAsDouble(n);
+        return GroverAmplitudes(2.0 * mean - at, 2.0 * mean - au);
+    }
 
-1. **Refutes** density on the 2‑dimensional SU(2) block whose gate image is the *finite projective Clifford group of order 24* over the cyclotomic field ℚ(ζ₂₄).  
-2. **Establishes** density on the 22‑dimensional block PU(22).  
-3. **Establishes** density on the 576‑dimensional pair‑carrier PU(576) by **combining**  
-   * a machine‑checked adjoint component,  
-   * a machine‑checked reachability‑rank‑92 certificate, and  
-   * a machine‑checked direct entangling‑witness certificate,  
-   together with the **classical lemmas**  
-   * multiplicity‑one closure, and  
-   * two‑local composition.  
-4. Records, per row, the distinction between the SU(2) refutation and the PU(22)/PU(576) establishments in a dictionary.  
-5. Measures the content‑addressed deduplication (cache‑collapse) ratio – an engineering number in \([0,1]\) that is **never** used to claim a quantum advantage.  
-6. Guarantees that every claim is traceable to an authoritative source (the source is recorded alongside each primitive).
+    /// Iterate the recurrence `iters` times from uniform amplitudes.
+    function GroverIterate(n : Int, iters : Int) : GroverAmplitudes {
+        mutable amps = GroverAmplitudes(1.0, 1.0);
+        for _ in 1 .. iters {
+            set amps = GroverStep(n, amps);
+        }
+        return amps;
+    }
 
-The construction below satisfies each item **by explicit mathematical definitions and proofs**.
+    /// Reference computation for the 3-qubit case used by the Rust unit test.
+    /// Target probability after 2 iterations is 121/128 ≈ 0.9453125.
+    function Grover3QubitProbability() : Double {
+        let amps = GroverIterate(8, 2);
+        return (amps::At * amps::At) / 8.0;
+    }
 
----
+    /// Operation that simply returns the overall certificate Boolean.
+    /// No qubits are allocated; this is a classical decision procedure.
+    operation QubitCertificate(s : Substrate) : Bool {
+        return Evaluate(s)::Overall;
+    }
 
-## 2. Primitive Definitions (all are pure functions of the substrate)
-
-| Symbol | Type | Meaning (as required by the operator) |
-|--------|------|----------------------------------------|
-| `S` | `ContentAddressedSubstrate` | Immutable map `hash → blob`. The *blob* is a finite list of matrices that describe the generators of the relevant groups. |
-| `hash` | `Blob → Addr` | Fixed collision‑resistant hash (e.g. SHA‑256). |
-| `su2_refuted(S)` | `Bool` | **False** iff the gate set extracted from `S` equals the finite projective Clifford group of order 24 over ℚ(ζ₂₄). |
-| `pu22_dense(S)` | `Bool` | **True** iff the generators from `S` generate a dense subgroup of PU(22). |
-| `adj_ok(S)` | `Bool` | **True** iff the adjoint representation of the group generated by `S` on 𝔭𝔲(576) is irreducible. |
-| `rank92_ok(S)` | `Bool` | **True** iff the linear span of all words of length ≤ L in the generators has dimension 92 (the reachability rank). |
-| `ent_wit_ok(S)` | `Bool` | **True** iff the expectation value of a fixed entangling witness W on the state produced by the generators exceeds the separability threshold. |
-| `mult_one_ocl(S)` | `Bool` | **True** iff the commutant of the *‑algebra* generated by `S` is one‑dimensional (multiplicity‑one). |
-| `two_loc_comp(S)` | `Bool` | **True** iff every two‑local generator acting on the 576‑dimensional space can be written as a product of the supplied generators. |
-| `dict_row(S)` | `Dictionary` | Table with three rows (SU(2), PU(22), PU(576)); each row contains the Boolean status from the corresponding primitive and a citation to the source. |
-| `dedup_metric(S)` | `Real ∈ [0,1]` | Ratio `|{unique chunks in S}| / |{total chunks stored in S}|`. |
-| `source_trace(c)` | `SourceID ∪ {⊥}` | Lookup of the bibliographic identifier attached to primitive `c`. (Implemented as a finite map; therefore always defined for the primitives we introduce.) |
-
-All primitives are **deterministic** and **stateless**; they depend only on the immutable substrate `S`.
-
----
-
-## 3. Lemmas and Hand‑Written Proofs  
-
-Below each lemma is proved from elementary facts (group theory, representation theory, linear algebra). No axiom is invoked beyond the standard definitions of the objects involved.
-
-### Lemma 1 (SU(2) density refuted)
-
-**Statement.**  
-Let `G ⊂ SU(2)` be the group generated by the matrices  
-
-\[
-X = \begin{pmatrix}0&1\\-1&0\end{pmatrix},\qquad
-Z = \begin{pmatrix}\zeta_{24}&0\\0&\zeta_{24}^{-1}\end{pmatrix},
-\]
-
-where \(\zeta_{24}=e^{2\pi i/24}\). Then `G` is the *finite projective Clifford group* of order 24 and its Zariski closure in `SU(2)` is `G` itself; consequently `G` is **not** dense in `SU(2)`.
-
-**Proof.**  
-
-1. Both `X` and `Z` have determinant 1, so they lie in `SU(2)`.  
-2. `X^4 = -I` and `Z^{24}=I`. Because `-I` is central in `SU(2)`, the projective image of `⟨X,Z⟩` in `PSU(2)≅SO(3)` has order  
-
-\[
-\frac{|⟨X,Z⟩|}{|\{\pm I\}|}= \frac{24}{2}=12,
-\]
-
+    /// Demonstration entry point that exercises the classical certificate
+    /// and the exact Grover amplitude reference.
+    @EntryPoint()
+    operation RunHolospacesDemo() : Unit {
+        let s = Substrate(
+            true,   // su2_is_projective_clifford_24
+            true,   // pu22_dense
+            true,   // pu576_adjoint_ok
+            true,   // pu576_rank92_ok
+            true,   // pu576_ent_witness_ok
+            true,   // mult_one_closure
+            true,   // two_local_comp
+            0.42    // dedup_ratio
+        );
+        let result = Evaluate(s);
+        Message($"Overall certificate: {result::Overall}");
+        Message($"3-qubit Grover target probability: {Grover3QubitProbability()}");
+    }
+}
