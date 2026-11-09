@@ -1,0 +1,14 @@
+fc := "gfortran"
+flags := "-std=f2018 -O2 -Wall -Wextra"
+build := "build"
+
+compile:
+    mkdir -p {{build}}
+    {{fc}} {{flags}} -c src/skl_production.f90 -J{{build}} -o {{build}}/skl_production.o
+    {{fc}} {{flags}} src/skl_main.f90 {{build}}/skl_production.o -I{{build}} -o {{build}}/skl_prod
+
+run: compile
+    {{build}}/skl_prod
+
+clean:
+    rm -rf {{build}}
