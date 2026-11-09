@@ -1,0 +1,13 @@
+default: build
+
+build:
+    cargo build --release
+
+run: build
+    ./target/release/qasm_parser ../../openqasm/examples/custom_circuit.qasm
+
+test:
+    cargo test
+
+clean:
+    cargo clean

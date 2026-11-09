@@ -1,0 +1,35 @@
+# SKL grammar, implemented subset. Keywords are case-sensitive in this version.
+
+module       = "MODULE" identifier newline { declaration } EOF ;
+declaration  = functor_decl | pipeline_decl ;
+
+functor_decl = "FUNCTOR" identifier newline
+               input_decl output_decl
+               { contract_block }
+               operation_block
+               { contract_block }
+               "END" newline ;
+
+input_decl   = "INPUT" ":" type newline ;
+output_decl  = "OUTPUT" ":" type newline ;
+type         = "VECTOR" "[" "F64" "]" ;
+
+contract_block = ("REQUIRES" | "ENSURES") ":" newline
+                 raw_line { raw_line }
+                 "END" newline ;
+operation_block = "OPERATION" ":" newline
+                  raw_line { raw_line }
+                  "END" newline ;
+
+pipeline_decl = "PIPELINE" identifier newline
+                { apply_decl | verify_decl }
+                "END" newline ;
+apply_decl   = "APPLY" identifier newline ;
+verify_decl  = "VERIFY" "ALL" newline ;
+
+raw_line     = any_nonblank_line ;
+identifier   = letter { letter | digit | "_" } ;
+newline      = LF ;
+
+# The parser retains operation and contract bodies as source text. The current
+# runtime does not compile these expressions into native procedures.

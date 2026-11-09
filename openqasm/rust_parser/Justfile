@@ -1,0 +1,41 @@
+# Justfile for the OpenQASM 3 parser
+# Requires: just (https://github.com/casey/just)
+
+default: build
+
+# Build the Rust binary in release mode
+build:
+    cargo build --release
+
+# Run the parser on the QASM file
+run: build
+    ./target/release/qasm_parser custom_circuit.qasm
+
+# Run cargo tests (none yet, but keeps the recipe for future use)
+test:
+    cargo test
+
+# Remove build artefacts
+clean:
+    cargo clean
+    rm -f custom_circuit.qasm
+
+# Generate the QASM file from the spec (hand-written here)
+qasm:
+    cat > custom_circuit.qasm <<'EOF'
+OPENQASM 3.0;
+include "stdgates.inc";
+
+qubit[2] q;
+
+float[2] angles;
+
+h q[0];
+rz(angles[0]) q[0];
+cx q[0], q[1];
+rz(angles[1]) q[1];
+cx q[0], q[1];
+EOF
+
+# Full pipeline: generate QASM, build, run
+all: qasm build run

@@ -1,0 +1,31 @@
+set shell := ["bash", "-cu"]
+
+fc := "gfortran"
+flags := "-std=f2018 -O2 -Wall -Wextra -fcheck=all -fbacktrace"
+build := "build"
+
+default:
+    @just --list
+
+init:
+    mkdir -p {{build}}
+
+compile: init
+    {{fc}} {{flags}} -J{{build}} -I{{build}} src/skl_types.f90 src/skl_lexer.f90 src/skl_parser.f90 src/functor_runtime.f90 src/gherkin_runner.f90 src/skl_main.f90 -o {{build}}/skl
+
+parse: compile
+    {{build}}/skl parse examples/arithmetic.skl
+
+verify: compile
+    {{build}}/skl verify examples/arithmetic.skl
+
+test:
+    ./tests/run.sh
+
+demo: compile
+    {{build}}/skl demo
+
+all: parse verify test demo
+
+clean:
+    rm -rf {{build}} *.mod
