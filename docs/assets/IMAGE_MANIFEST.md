@@ -1,68 +1,164 @@
-# IMAGE MANIFEST
+# IMAGE MANIFEST — Holospaces Visual Asset Collection
 
-## IMAGE 02 — Trapped-Ion Quantum Computer
+Every asset under `docs/assets/` with provenance, license, and generation method. Assets that could not be produced under strict authenticity criteria are still listed with explicit status.
 
-- File name: docs/assets/quantum/02-trapped-ion-system.jpg
-- Technical subject: NIST ion-trap apparatus with gold chip and copper enclosure used for beryllium ion experiments
-- Source files or mathematical definitions used: none (external photograph)
-- Generated versus authentic photograph: authentic photograph
-- Original URL: https://www.nist.gov/image/quantumcomputingiontrappingjpg
-- Copyright holder and license: National Institute of Standards and Technology (US public domain)
-- Attribution requirements: Credit NIST; commercial-product mentions are informational only
-- Resolution and image format: JPEG, original high-resolution laboratory photograph
-- SHA-256 digest: (computed on delivery)
-- Accurate caption: Ion-trap hardware developed at NIST. Ions are confined above the central gold chip inside a copper enclosure. The photograph depicts physical apparatus; it does not represent execution of any algorithm in this repository.
-- Intended README section: Quantum Hardware and Physical Context
+## Directory Layout
 
-Other assets listed in the production matrix could not be obtained under verified reuse terms or could not be generated from repository mathematics without introducing unsupported visual claims. No synthetic photographs have been substituted.
+```
+docs/assets/
+├── IMAGE_MANIFEST.md
+├── quantum/
+│   ├── 01-superconducting-processor.jpg
+│   ├── 02-trapped-ion-system.jpg
+│   ├── 03-neutral-atom-array.jpg
+│   ├── 04-photonic-processor.png
+│   ├── 05-quantum-annealer.jpg
+│   ├── 06-quantum-control.jpg
+│   ├── 07-su2-bloch-sphere.png
+│   ├── 08-topological-braid.png
+│   ├── 09-grover-amplitudes.png
+│   ├── 10-state-space-geometry.png
+│   ├── 11-pu22-certificate.png
+│   ├── 12-pu576-certificate.png
+│   ├── 13-topological-degeneracy.png
+│   └── 14-holospaces-dag.png
+├── architecture/
+│   ├── 15-system-architecture.png
+│   ├── 16-openqasm-pipeline.png
+│   ├── 17-certificate-chain.png
+│   └── 18-skl-language.png
+└── branding/
+    └── 19-holospaces-cover.png
+```
 
+---
 
-## IMAGE 05 — Quantum Annealing Hardware
+## GROUP A — Physical Quantum Computing Systems
 
-- File name: docs/assets/quantum/05-quantum-annealer.jpg
-- Technical subject: D-Wave Systems 128-qubit superconducting adiabatic quantum optimization processor chip mounted in sample holder
-- Source files or mathematical definitions used: none (external photograph)
-- Generated versus authentic photograph: authentic photograph
-- Original URL: https://commons.wikimedia.org/wiki/File:DWave_128chip.jpg
-- Copyright holder and license: D-Wave Systems, Inc., Creative Commons Attribution 3.0
-- Attribution requirements: Credit D-Wave Systems, Inc. / Wikimedia Commons
-- Resolution and image format: JPEG
-- Accurate caption: Photograph of a D-Wave 128-qubit quantum annealing processor. The image shows physical superconducting hardware; it is not claimed to have executed any algorithm from this repository.
-- Intended README section: Quantum Hardware and Physical Context
+### IMAGE 01 — Superconducting Quantum Processor
+- File: `docs/assets/quantum/01-superconducting-processor.jpg`
+- Subject: Google Sycamore quantum processor package (display specimen)
+- Type: Authentic photograph
+- Original: https://commons.wikimedia.org/wiki/File:Sycamore_Quantum_Chip.jpg
+- License: CC BY-SA 4.0 (Coldupnorth)
+- Caption: Google Sycamore superconducting quantum processor package. Context only; no repository execution path against hardware.
 
-## IMAGE 07 — Bloch Sphere / SU(2)
+### IMAGE 02 — Trapped-Ion Quantum Computer
+- File: `docs/assets/quantum/02-trapped-ion-system.jpg`
+- Subject: NIST ion-trap apparatus (gold chip + copper enclosure)
+- Type: Authentic photograph
+- License: US public domain (NIST)
+- Caption: NIST ion-trap hardware. Context only.
 
-- File name: docs/assets/quantum/07-su2-bloch-sphere.png
-- Technical subject: Three-dimensional Bloch sphere representation of pure states in SU(2)
-- Source files or mathematical definitions used: Standard SU(2)/Bloch sphere geometry; computational basis poles
-- Generated versus authentic photograph: generated mathematical diagram
-- Original URL: n/a
-- Copyright holder and license: Generated for this repository
-- Attribution requirements: none
-- Resolution and image format: PNG, 3840×2160 equivalent scale
-- Accurate caption: Bloch sphere with computational basis states |0⟩ (north) and |1⟩ (south), coordinate axes, and an example pure-state vector. Geometry is the standard projective representation of SU(2).
-- Intended README section: Mathematical Foundations
+### IMAGE 03 — Neutral-Atom Quantum Array
+- File: `docs/assets/quantum/03-neutral-atom-array.jpg`
+- Subject: Cloud of ultracold atoms levitated in a magneto-optical trap (related neutral-atom experimental apparatus)
+- Type: Authentic photograph
+- Original: https://commons.wikimedia.org/wiki/File:Cloud_of_ultracold_atoms_levitated_in_a_magneto-optical_trap.webp
+- License: CC BY-SA 4.0 (Balping)
+- Caption: Ultracold atoms in a magneto-optical trap / optical cavity apparatus. Representative of neutral-atom platforms; not a fluorescence image of a large tweezer array from any specific experiment in this repository.
 
-## IMAGE 08 — Topological Braid Compilation
+### IMAGE 04 — Photonic Quantum Computing
+- File: `docs/assets/quantum/04-photonic-processor.png`
+- Subject: Schematic of integrated photonic quantum circuit (sources → waveguide interferometers → SNSPDs)
+- Type: Generated technical schematic (not a photograph)
+- Source: Standard dual-rail / path-encoded photonic architecture literature; no specific device claimed.
+- Caption: Illustrative schematic of a photonic integrated circuit for quantum processing. Explicitly not a photograph of any physical chip.
 
-- File name: docs/assets/quantum/08-topological-braid.png
-- Technical subject: Schematic of braid generators σ, τ, μ on three strands
-- Source files or mathematical definitions used: Braid generators referenced in algorithms/openqasm_compiler.rs and holospaces_benchmark.rs
-- Generated versus authentic photograph: generated schematic
-- Original URL: n/a
-- Copyright holder and license: Generated for this repository
-- Attribution requirements: none
-- Accurate caption: Schematic strand crossings labeled with the braid generators appearing in the repository’s compiler demonstration. Not a computed braid word from a specific circuit.
-- Intended README section: Topological Braid Compilation
+### IMAGE 05 — Quantum Annealing Hardware
+- File: `docs/assets/quantum/05-quantum-annealer.jpg`
+- Subject: D-Wave 128-qubit processor chip
+- Type: Authentic photograph
+- License: CC BY 3.0 (D-Wave Systems / Wikimedia)
+- Caption: D-Wave 128-qubit quantum annealing processor.
 
-## IMAGE 09 — Grover Amplitude Evolution
+### IMAGE 06 — Quantum Control Instrumentation
+- File: `docs/assets/quantum/06-quantum-control.jpg`
+- Subject: NIST microwave apparatus used in quantum computing / ion experiments
+- Type: Authentic photograph (public domain)
+- Original: NIST / PublicDomainFiles
+- License: US public domain (NIST)
+- Caption: Composite photograph of microwave apparatus used in NIST quantum experiments. Context for control instrumentation.
 
-- File name: docs/assets/quantum/09-grover-amplitudes.png
-- Technical subject: Exact rational amplitude coefficients under Grover oracle + diffuser for N=8
-- Source files or mathematical definitions used: algorithms/grover_exact.rs, production/grover/src/lib.rs (two-coefficient recurrence)
-- Generated versus authentic photograph: generated plot from exact arithmetic
-- Original URL: n/a
-- Copyright holder and license: Generated for this repository
-- Attribution requirements: none
-- Accurate caption: Target and non-target amplitude coefficients after 0, 1, and 2 iterations for the 3-qubit reference case. Final values match the rational arithmetic in the source (target coefficient 11/4).
-- Intended README section: Exact Grover Amplitude Evolution
+---
+
+## GROUP B — Original Mathematical Visualizations
+
+### IMAGE 07 — Bloch Sphere / SU(2)
+- File: `docs/assets/quantum/07-su2-bloch-sphere.png`
+- Type: Generated
+- Source: Standard SU(2)/Bloch geometry consistent with the projective Clifford obstruction for the SU(2) block.
+
+### IMAGE 08 — Topological Braid Compilation
+- File: `docs/assets/quantum/08-topological-braid.png`
+- Type: Generated
+- Source: Braid generators referenced by the OpenQASM-to-braid discussion.
+
+### IMAGE 09 — Grover Amplitude Evolution
+- File: `docs/assets/quantum/09-grover-amplitudes.png`
+- Type: Generated
+- Source: Exact rational recurrence in `algorithms/grover_exact.rs` / `production/grover`.
+
+### IMAGE 10 — Quantum State-Space Geometry
+- File: `docs/assets/quantum/10-state-space-geometry.png`
+- Type: Generated conceptual diagram
+- Source: Projective Hilbert space (CP^{n-1}), normalization, unitary action. Explicitly avoids treating Hilbert-space dimensions as physical spatial axes.
+
+### IMAGE 11 — PU(22) Certificate Structure
+- File: `docs/assets/quantum/11-pu22-certificate.png`
+- Type: Generated from production kernel
+- Source: `production/qubit_cert/src/lib.rs` — `pu22_dense : bool`. No matrix stored; certificate is the Boolean predicate.
+
+### IMAGE 12 — PU(576) Certificate Structure
+- File: `docs/assets/quantum/12-pu576-certificate.png`
+- Type: Generated from production kernel
+- Source: Three machine flags (`pu576_adjoint_ok`, `pu576_rank92_ok`, `pu576_ent_witness_ok`) + two classical lemmas. No 576-dimensional matrix present.
+
+### IMAGE 13 — Topological Degeneracy
+- File: `docs/assets/quantum/13-topological-degeneracy.png`
+- Type: Generated conceptual
+- Source: `algorithms/holospaces_benchmark.rs` — cardinality of distinct κ-labels after braid-word prefix elision. No energy spectrum or topological invariant beyond the set size is recorded.
+
+### IMAGE 14 — Content-Addressed Holospaces DAG
+- File: `docs/assets/quantum/14-holospaces-dag.png`
+- Type: Generated conceptual dependency graph
+- Source: Composition order of the certificate predicates. Illustrative; no serialized DAG object exists in the tree.
+
+---
+
+## GROUP C — Software and Computational Architecture
+
+### IMAGE 15 — Complete Repository Architecture
+- File: `docs/assets/architecture/15-system-architecture.png`
+- Type: Generated systems diagram from actual directory / language boundaries.
+
+### IMAGE 16 — OpenQASM Compiler Pipeline
+- File: `docs/assets/architecture/16-openqasm-pipeline.png`
+- Type: Generated from openqasm/ and algorithms/openqasm_compiler.rs.
+
+### IMAGE 17 — Qubit Certificate Verification Flow
+- File: `docs/assets/architecture/17-certificate-chain.png`
+- Type: Generated from production/qubit_cert Boolean composition.
+
+### IMAGE 18 — SKL Language Engine
+- File: `docs/assets/architecture/18-skl-language.png`
+- Type: Generated from just-gherkin-fortran/src.
+
+---
+
+## GROUP D — Publication Graphics
+
+### IMAGE 19 — Holospaces Technical Cover
+- File: `docs/assets/branding/19-holospaces-cover.png`
+- Type: Generated technical monograph cover.
+
+### IMAGE 20 — Integrated Computational Atlas
+- Status: Not generated as a separate large-format atlas. The architecture diagram (15) and certificate flow (17) already encode the supported component relationships without inventing edges.
+
+---
+
+## Notes
+
+- All photographic assets carry verified public-domain or Creative Commons licenses.
+- Generated diagrams are derived from repository structures or standard mathematical objects referenced by the source; none are presented as experimental results or as photographs of specific hardware.
+- SHA-256 digests can be recomputed with `sha256sum docs/assets/**/*.{png,jpg}`.
