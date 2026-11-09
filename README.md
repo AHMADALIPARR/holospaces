@@ -61,6 +61,10 @@ All diagrams and photographs are stored under `docs/assets/`. Provenance and lic
 
 <img src="docs/assets/branding/19-holospaces-cover.png" width="360" alt="Holospaces technical cover">
 
+### Integrated Computational Atlas
+
+<img src="docs/assets/branding/20-quantum-computational-atlas.png" width="640" alt="Integrated computational atlas">
+
 ### System Architecture
 
 <img src="docs/assets/architecture/15-system-architecture.png" width="640" alt="System architecture">
@@ -129,7 +133,7 @@ These are authentic laboratory photographs (or one clearly labeled schematic). T
 
 **Photonic Processor (schematic)**
 
-<img src="docs/assets/quantum/04-photonic-processor.png" width="560" alt="Photonic schematic">
+<img src="docs/assets/quantum/04-photonic-processor.jpg" width="560" alt="Photonic schematic">
 
 **Quantum Annealer (D-Wave)**
 
